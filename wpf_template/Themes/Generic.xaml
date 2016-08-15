@@ -1,0 +1,88 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+
+    <!--Main menu, big buttons-->
+    <Style x:Key="LeftMenuBigButtons" 
+               TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Padding" Value="0,5,0,5"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--/ Main menu, big buttons-->
+
+    
+    <!--Main menu, small buttons-->
+    <Style x:Key="LeftMenuSmallButtons" 
+               TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Padding" Value="30,5,10,5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--/Main menu, small buttons-->
+
+   
+
+    <!--Label, big size (page header)-->
+    <Style x:Key="Label_BigSize" 
+               TargetType="Label" 
+               BasedOn="{StaticResource {x:Type Label}}">
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Padding" Value="0,0,0,0" />
+    </Style>
+    <!--/Label, big size (page header)-->
+
+
+    <!--Converting button into linkbutton-->
+    <Style x:Key="HyperlinkLikeButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ContentPresenter />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <ControlTemplate.Resources>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="TextDecorations" Value="Underline" />
+                                </Style>
+                            </ControlTemplate.Resources>
+                            <ContentPresenter />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--/Converting button into linkbutton-->
+
+</ResourceDictionary>
