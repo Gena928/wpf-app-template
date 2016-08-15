@@ -1,4 +1,4 @@
-# wpf-app-template
+# WPF application template
 Simple, yet powerfull WPF template. Can be used to create "Click once" office applications.
 
 - menu on the left side of main window;
