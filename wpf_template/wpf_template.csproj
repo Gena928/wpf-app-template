@@ -61,10 +61,15 @@
     <Compile Include="App_Code\My_Elements.cs" />
     <Compile Include="App_Code\My_SqlMethods.cs" />
     <Compile Include="App_Code\My_Excel.cs" />
+    <Compile Include="ViewModels\MainWindow_ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\AppSettings\aa_BackGroundImages_ViewModel.cs" />
+    <Compile Include="Views\AppSettings\aa_BackGroundImages.xaml.cs">
+      <DependentUpon>aa_BackGroundImages.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -79,6 +84,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AppSettings\aa_BackGroundImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
@@ -121,7 +130,6 @@
     <Folder Include="Views\Accounting\" />
     <Folder Include="Views\Logistic\" />
     <Folder Include="Views\Marketing\" />
-    <Folder Include="Views\Service\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\app_logo.png" />

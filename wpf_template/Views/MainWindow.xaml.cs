@@ -15,6 +15,9 @@ namespace wpf_template.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            // DataContext
+            this.DataContext = new wpf_template.ViewModels.MainWindow_ViewModel();
         }
 
 
@@ -44,7 +47,10 @@ namespace wpf_template.Views
                     {
                         tb.Foreground = new SolidColorBrush(Colors.White);
                         string _Uri = tb.navigation_url;
-                        this.Frame_MainContent.Navigate(new Uri(_Uri, UriKind.Relative));
+                        if (!string.IsNullOrEmpty(_Uri))
+                            this.Frame_MainContent.Navigate(new Uri(_Uri, UriKind.Relative));
+                        else
+                            System.Windows.Forms.MessageBox.Show("Navigation uri is not set for this menu item!");
                     }
                     else
                     {
@@ -129,6 +135,7 @@ namespace wpf_template.Views
 
         /// <summary>
         /// Set page header
+        /// this method is used by sub-pages to set a header of a current page. See code of any sub-page in "Views" directory
         /// </summary>
         public void SetPageHeader(string _MainHeader)
         {

@@ -30,7 +30,7 @@
 
             <!--Application Image-->
             <StackPanel Height="90">
-                <Image Source="/wpf_template;component/Images/app_logo.png" Width="130" Height="65" Margin="0,10,5,0" MouseDown="Image_MainLogo_MouseDown">
+                <Image Source="/wpf_template;component/Images/app_logo.png" Width="130" Height="65" Margin="0,10,5,0" MouseDown="Image_MainLogo_MouseDown" ToolTip="Click to nagigate to main window">
                     <Image.OpacityMask>
                         <SolidColorBrush Color="Black" Opacity="0.5"/>
                     </Image.OpacityMask>
@@ -74,6 +74,7 @@
 
                         <StackPanel Orientation="Vertical">
                             <!--A simple TextBlock, with one additional property: navigation_url. See code in App_Code/My_Elements class-->
+                            <!--Sub menus MUST HAVE a "name" property-->
                             <local:My_Textblock x:Name="TextBlock_Accounting1" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="" Text="Sub menu 1" />
                             <local:My_Textblock x:Name="TextBlock_Accounting2" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="" Text="Sub menu 2" />
                             <local:My_Textblock x:Name="TextBlock_Accounting3" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="" Text="Sub menu 3" />
@@ -83,105 +84,102 @@
                 </Expander>
                 <!--/Accounting...-->
 
-                <!--Меню запчастей-->
-                <Expander x:Name="Expander_SpareParts" Template="{StaticResource StretchyExpanderTemp}"
-                        OverridesDefaultStyle="True"
-                        VerticalAlignment="Top" Expanded="ExpanderExpanded" >
+                <!--Logistic-->
+                <Expander x:Name="Expander_Logistic" Template="{StaticResource StretchyExpanderTemp}"
+                      OverridesDefaultStyle="True"
+                      VerticalAlignment="Top" Expanded="ExpanderExpanded" >
                     <Expander.Header>
                         <BulletDecorator>
-                            <TextBlock Text="&#xf013;  Запчасти" Name="Expander_SpareParts_Header" FontFamily="{StaticResource FontAwesome}" Style="{StaticResource LeftMenuBigButtons}"/>
+
+                            <!--Header-->
+                            <!--IMPORTANT: Textbox name must be the same, as Expander name, and "_Header" prefix-->
+                            <!--Cheatsheet with icons http://fontawesome.io/cheatsheet/  for example truck icon has &#xf0d1; -->
+                            <TextBlock Style="{StaticResource LeftMenuBigButtons}" Name="Expander_Logistic_Header" 
+                                       Text="&#xf0d1;   Logistic" FontFamily="{StaticResource FontAwesome}" />
                         </BulletDecorator>
                     </Expander.Header>
 
-                    <Border>
+                    <Border >
                         <Border.Background>
                             <SolidColorBrush Color="White" Opacity="0.05"/>
                         </Border.Background>
-                        <StackPanel Orientation="Vertical" Name="Expander_SpareParts_MainPanel">
 
-                            <TextBlock Name="TextBlock_SpareParts_DSV_file_upload" Text="Загрузка файла от DSV"  Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown">
-                                <Label Visibility="Collapsed">/Pages/SpareParts/AB_ExcelFromDSV.xaml</Label>
-                            </TextBlock>
-
-                            <TextBlock Name="TextBlock_SpareParts_GeneralReports" Text="Общие отчеты"  Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown">
-                                <Label Visibility="Collapsed">/Pages/SpareParts/AC_GeneralReports.xaml</Label>
-                            </TextBlock>
-                            <TextBlock Name="TextBlock_SpareParts_1Cexchange" Text="Перегрузка данных из 1С"  Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown">
-                                <Label Visibility="Collapsed">/Pages/SpareParts/AE_1Cupload.xaml</Label>
-                            </TextBlock>
-                            <TextBlock Name="TextBlock_SpareParts_SetsForReporting" Text="Комплекты для отчетов"  Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown">
-                                <Label Visibility="Collapsed">/Pages/SpareParts/AI_Sets.xaml</Label>
-                            </TextBlock>
-
-                            <TextBlock Name="TextBlock_SpareParts_DepositPayments" Text="Депозитные платежки"  Style="{StaticResource LeftMenuSmallButtons}"  MouseDown="MenuItemMouseDown">
-                                <Label Visibility="Collapsed">/Pages/SpareParts/AK_DepositsPO.xaml</Label>
-                            </TextBlock>
-
-                            <TextBlock Name="TextBlock_SpareParts_PINV_search" Text="Поиск PINV"  Style="{StaticResource LeftMenuSmallButtons}"  MouseDown="MenuItemMouseDown">
-                                <Label Visibility="Collapsed">/Pages/SpareParts/AH_PinvProblemsCheck.xaml</Label>
-                            </TextBlock>
-
-
-                            <TextBlock Name="TextBlock_SpareParts_Prices" Text="Работа с прайсом"  Style="{StaticResource LeftMenuSmallButtons}"  MouseDown="MenuItemMouseDown">
-                                <Label Visibility="Collapsed">/Pages/SpareParts/AG_SalesPrices.xaml</Label>
-                            </TextBlock>
-
-                        </StackPanel>
-                    </Border>
-
-                </Expander>
-                <!--/Меню запчастей-->
-
-
-                <!--Меню сервисного контроля-->
-                <Expander x:Name="Expander_ServiceControl" Template="{StaticResource StretchyExpanderTemp}"
-                        OverridesDefaultStyle="True"
-                        VerticalAlignment="Top" Expanded="ExpanderExpanded" >
-                    <Expander.Header>
-                        <BulletDecorator>
-                            <TextBlock Text="&#xf046;  Сервисный контроль" Name="Expander_ServiceControl_Header" FontFamily="{StaticResource FontAwesome}" Style="{StaticResource LeftMenuBigButtons}"/>
-                        </BulletDecorator>
-                    </Expander.Header>
-                    <Border>
-                        <Border.Background>
-                            <SolidColorBrush Color="White" Opacity="0.05"/>
-                        </Border.Background>
-                        <StackPanel Orientation="Vertical" Name="Expander_ServiceControl_MainPanel">
-                            <TextBlock Name="TextBlock_ServiceControl_SetsForReports" Text="Группы отчетов 05.01...05.03"  Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" >
-                                <Label Visibility="Collapsed">/Pages/ServiceControl/AA_WorkingWithItemGroups.xaml</Label>
-                            </TextBlock>
+                        <StackPanel Orientation="Vertical">
+                            <!--A simple TextBlock, with one additional property: navigation_url. See code in App_Code/My_Elements class-->
+                            <!--Sub menus MUST HAVE a "name" property-->
+                            <local:My_Textblock x:Name="TextBlock_Logistic1" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="" Text="Sub menu 1" />
+                            <local:My_Textblock x:Name="TextBlock_Logistic2" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="" Text="Sub menu 2" />
+                            <local:My_Textblock x:Name="TextBlock_Logistic3" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="" Text="Sub menu 3" />
                         </StackPanel>
 
                     </Border>
                 </Expander>
-                <!--Меню сервисного контроля-->
+                <!--/Logistic-->
 
 
-                <!--Меню администратора-->
+                <!--Marketing-->
+                <Expander x:Name="Expander_Marketing" Template="{StaticResource StretchyExpanderTemp}"
+                      OverridesDefaultStyle="True"
+                      VerticalAlignment="Top" Expanded="ExpanderExpanded" >
+                    <Expander.Header>
+                        <BulletDecorator>
+
+                            <!--Header-->
+                            <!--IMPORTANT: Textbox name must be the same, as Expander name, and "_Header" prefix-->
+                            <!--Cheatsheet with icons http://fontawesome.io/cheatsheet/  for example truck icon has &#xf0d1; -->
+                            <TextBlock Style="{StaticResource LeftMenuBigButtons}" Name="Expander_Marketing_Header" 
+                                       Text="&#xf0d6;   Marketing" FontFamily="{StaticResource FontAwesome}"/>
+                        </BulletDecorator>
+                    </Expander.Header>
+
+                    <Border >
+                        <Border.Background>
+                            <SolidColorBrush Color="White" Opacity="0.05"/>
+                        </Border.Background>
+
+                        <StackPanel Orientation="Vertical">
+                            <!--A simple TextBlock, with one additional property: navigation_url. See code in App_Code/My_Elements class-->
+                            <!--Sub menus MUST HAVE a "name" property-->
+                            <local:My_Textblock x:Name="TextBlock_Marketing1" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="" Text="Sub menu 1" />
+                            <local:My_Textblock x:Name="TextBlock_Marketing2" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="" Text="Sub menu 2" />
+                            <local:My_Textblock x:Name="TextBlock_Marketing3" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="" Text="Sub menu 3" />
+                        </StackPanel>
+
+                    </Border>
+                </Expander>
+                <!--/Marketing-->
+
+
+                <!--Admin-->
                 <Expander x:Name="Expander_Admin" Template="{StaticResource StretchyExpanderTemp}"
-                        OverridesDefaultStyle="True"
-                        VerticalAlignment="Top" Expanded="ExpanderExpanded" Visibility="{Binding return_admin_pane_visibility}" >
+                      OverridesDefaultStyle="True"
+                      VerticalAlignment="Top" Expanded="ExpanderExpanded" >
                     <Expander.Header>
                         <BulletDecorator>
-                            <TextBlock Text="&#xf0ad;  Админ" Name="Expander_Admin_Header" FontFamily="{StaticResource FontAwesome}" Style="{StaticResource LeftMenuBigButtons}"/>
+
+                            <!--Header-->
+                            <!--IMPORTANT: Textbox name must be the same, as Expander name, and "_Header" prefix-->
+                            <!--Cheatsheet with icons http://fontawesome.io/cheatsheet/  for example truck icon has &#xf0d1; -->
+                            <TextBlock Style="{StaticResource LeftMenuBigButtons}" Name="Expander_Admin_Header" 
+                                       Text="&#xf085;   App settings" FontFamily="{StaticResource FontAwesome}"/>
                         </BulletDecorator>
                     </Expander.Header>
-                    <Border>
+
+                    <Border >
                         <Border.Background>
                             <SolidColorBrush Color="White" Opacity="0.05"/>
                         </Border.Background>
-                        <StackPanel Orientation="Vertical" Name="Expander_Admin_MainPanel">
-                            <TextBlock Name="TextBlock_Admin_Groups" Text="Пользователи и роли"  Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" >
-                                <Label Visibility="Collapsed">/Pages/Admin/UsersAndRoles.xaml</Label>
-                            </TextBlock>
-                            <TextBlock Name="TextBlock_Admin_Background" Text="Фоновые изображения"  Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" >
-                                <Label Visibility="Collapsed">/Pages/Admin/BackgroundImages.xaml</Label>
-                            </TextBlock>
 
+                        <StackPanel Orientation="Vertical">
+                            <!--A simple TextBlock, with one additional property: navigation_url. See code in App_Code/My_Elements class-->
+                            <!--Sub menus MUST HAVE a "name" property-->
+                            <local:My_Textblock x:Name="TextBlock_Admin1" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="" Text="Users and roles" />
+                            <local:My_Textblock x:Name="TextBlock_Admin2" Style="{StaticResource LeftMenuSmallButtons}" MouseDown="MenuItemMouseDown" navigation_url="/Views/AppSettings/aa_BackGroundImages.xaml" Text="Background images" />
                         </StackPanel>
+
                     </Border>
                 </Expander>
-                <!--/Меню администратора-->
+                <!--/Admin-->
 
             </StackPanel>
             <!--/container with menu items-->
