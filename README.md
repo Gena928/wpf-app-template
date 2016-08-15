@@ -11,5 +11,6 @@ Created in Visual Studio 2015, using .NET framework 4.5. Requires SQL server (Ex
 
 To be added in a few days:
 - roles support;
+- excel automation;
 
 See "Wiki" for more description.
