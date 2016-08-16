@@ -26,8 +26,8 @@ namespace wpf_template.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=STAKHOVSKY\\SQLEXPRESS;Initial Catalog=WPF_TEST;Integrated Security=Tr" +
-            "ue")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=COMPUTERNAME\\SQLEXPRESS;Initial Catalog=WPF_TEST;Integrated Security=" +
+            "True")]
         public string FirstDatabase_ConnectionString {
             get {
                 return ((string)(this["FirstDatabase_ConnectionString"]));
