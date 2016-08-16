@@ -15,13 +15,13 @@ namespace wpf_template.ViewModels
     /// </summary>
     class MainWindow_ViewModel : ViewModelBase
     {
-        #region Переменные и конструктор
+        #region variables & constructor
         string _adminPaneVisibility = "Hidden";
         MyBackgroundImage _selected_image;              // Image for background
         ImageBrush _MainImageBrush;                     // ImageBrush for main form on the screen
 
         /// <summary>
-        /// c-tor
+        /// Constructor
         /// </summary>
         public MainWindow_ViewModel()
         {
@@ -99,11 +99,11 @@ namespace wpf_template.ViewModels
         /// </summary>
         public void GetBackgroundImageFromDatabase()
         {
-            // Сброс значений
+            // Reset values
             return_selected_image = new MyBackgroundImage();
 
 
-            // Класс для работы
+            // SQL class for command execution
             My_SqlCommand _command = new My_SqlCommand();
             _command.input_SqlCommandText = "SELECT top(1) [Image id], [Background image], [Background image name], [Background image extension] FROM tbl_fact_Background_images order by newid();";
             _command.input_connection = My_SqlCommand.ConnectTo.FirstDatabase;
@@ -144,16 +144,6 @@ namespace wpf_template.ViewModels
 
         }
 
-
-
-        ///// <summary>
-        ///// Достаем первую попавшуюся картинку и делаем ImageBrush
-        ///// </summary>
-        //public void CreateImageBrush()
-        //{
-        //    _MainImageBrush.ImageSource = return_selected_image.ReturnImage_bitmap_format;
-        //    _MainImageBrush.Opacity = 0.6;
-        //}
 
         #endregion
     }

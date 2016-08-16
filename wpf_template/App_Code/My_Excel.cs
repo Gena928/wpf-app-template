@@ -1846,31 +1846,25 @@ namespace wpf_template.Code
         #region Private Methods (1)
 
         /// <summary>
-        /// Converting excel cell from letter format into number format. I.e. from "A16" into something like 16
+        /// Converting excel cell from number into letter, i.e. 1 will be A, 2 will be B, e.t.c.
         /// </summary>
         /// <param name="colNum"></param>
         /// <returns></returns>
         private string ParseColNum(int colNum)
         {
-            string strColumn;
+            colNum -= 1;
+            if (colNum < 0)
+                colNum = 0;
+            const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-            char letter1, letter2;
-            int intFirstLetter = ((colNum) / 26);
-            int intSecondLetter = (colNum % 26);
-            intFirstLetter = intFirstLetter + 64;
-            intSecondLetter = intSecondLetter + 65;
+            var value = "";
 
-            if (intFirstLetter > 64)
-            {
-                letter1 = (char)intFirstLetter;
-            }
-            else
-            {
-                letter1 = char.Parse(" ");
-            }
-            letter2 = (char)intSecondLetter;
-            strColumn = string.Concat(letter1, letter2);
-            return strColumn.Trim();
+            if (colNum >= letters.Length)
+                value += letters[colNum / letters.Length - 1];
+
+            value += letters[colNum % letters.Length];
+
+            return value;
         }
 
         #endregion

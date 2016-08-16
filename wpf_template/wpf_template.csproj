@@ -68,6 +68,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\AppSettings\aa_BackGroundImages_ViewModel.cs" />
+    <Compile Include="ViewModels\ViewStart_ViewModel.cs" />
     <Compile Include="Views\AppSettings\aa_BackGroundImages.xaml.cs">
       <DependentUpon>aa_BackGroundImages.xaml</DependentUpon>
     </Compile>

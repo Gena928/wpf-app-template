@@ -5,10 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:wpf_template.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="700" d:DesignWidth="1500"
       Title="ViewStart">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="649*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="166*"/>
+        </Grid.RowDefinitions>
+
+        <Label Style="{StaticResource Label_SmallWhite}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Example of excel automation</Label>
+
+        
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+            <Button Style="{StaticResource HyperlinkLikeButton}" Command="{Binding icommand_create_excel_file}" ToolTip="Start excel and create calendar for current year" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center">Create calendar in excel</Button>
+        </StackPanel>
         
     </Grid>
 </Page>

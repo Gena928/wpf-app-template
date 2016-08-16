@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
 
 
+    <!--General settings for all controls-->
     <Style TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="Margin" Value="0,0,0,0" />
@@ -35,8 +36,9 @@
     <Style TargetType="GroupBox">
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontSize" Value="11"/>
-    </Style>    
-    
+    </Style>
+    <!--/ General settings for all controls-->
+
 
     <!--Main menu, big buttons-->
     <Style x:Key="LeftMenuBigButtons" 
@@ -90,6 +92,20 @@
     </Style>
     <!--/Label, big size (page header)-->
 
+    
+    <!--Label, small size white-->
+    <Style x:Key="Label_SmallWhite" 
+               TargetType="Label" 
+               BasedOn="{StaticResource {x:Type Label}}">
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Padding" Value="0,0,0,0" />
+    </Style>
+    <!--/Label, small size white-->
+    
+    
 
     <!--Converting button into linkbutton-->
     <Style x:Key="HyperlinkLikeButton" TargetType="Button">
@@ -102,6 +118,7 @@
         </Setter>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" />
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FontSize" Value="13"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
