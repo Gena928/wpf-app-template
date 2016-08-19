@@ -78,7 +78,15 @@
     <Compile Include="Views\ViewStart.xaml.cs">
       <DependentUpon>ViewStart.xaml</DependentUpon>
     </Compile>
+    <Page Include="Themes\Datepicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\ExpanderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Button.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -134,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\app_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL script to create table.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

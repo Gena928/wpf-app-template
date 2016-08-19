@@ -5,16 +5,20 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            
+
+            <!--Adding font awesome support-->
+            <FontFamily x:Key="FontAwesome">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
+
             <!--Themes for application-->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/Generic.xaml" />
                 <ResourceDictionary Source="Themes/ExpanderStyles.xaml" />
+                <ResourceDictionary Source="Themes/Button.xaml" />
+                <ResourceDictionary Source="Themes/Datepicker.xaml" />
+                
             </ResourceDictionary.MergedDictionaries>
 
-            <!--Adding font awesome support-->
-            <FontFamily x:Key="FontAwesome">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
-            
+           
         </ResourceDictionary>         
     </Application.Resources>
 </Application>

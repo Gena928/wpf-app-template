@@ -1,0 +1,179 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+
+    <!--Wihtout link to fontawesome icons are not working here!-->
+    <FontFamily x:Key="FontAwesome">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
+    
+    <!--some text
+    https://msdn.microsoft.com/ru-ru/library/ff468215(v=vs.110).aspx 
+    
+    DatePicker parts:
+    PART_Root (Grid) - the root of the control
+    PART_Button (Button) - the button that opens and closes the Calendar
+    PART_TextBox (DatePickerTextBox) - The text box that allows you to input a date.
+    PART_Popup (Popup) - The popup for the DatePicker control.
+    -->
+
+
+    <Style x:Key="DatePickerCalendarStyle"
+       TargetType="{x:Type Calendar}"
+       BasedOn="{StaticResource {x:Type Calendar}}" />
+
+    
+    <!--The template for the button that displays the calendar.-->
+    <Style x:Key="DropDownButtonStyle" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Name="ButtonGrid"
+                            HorizontalAlignment="Stretch"
+                            Margin="0" 
+                            VerticalAlignment="Stretch">
+
+                        <Grid.Background>
+                            <SolidColorBrush x:Name="GridBGbrush" Color="White" />
+                        </Grid.Background>
+                        <!--Calendar icon-->
+                        <TextBlock Margin="0" FontSize="15" FontFamily="{StaticResource FontAwesome}" HorizontalAlignment="Center" VerticalAlignment="Center">&#xf073;</TextBlock>
+
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <!--Change color on mouse enter-->
+                        <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonGrid">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="GridBGbrush" Storyboard.TargetProperty="Color" From="White" To="#c2cad8" Duration="0:0:0.4" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="GridBGbrush" Storyboard.TargetProperty="Color" From="#c2cad8" To="White" Duration="0:0:0.4" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <!--/Change color on mouse enter-->
+
+                    </ControlTemplate.Triggers>
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--/The template for the button that displays the calendar.-->
+
+
+    <!--The template for datepicker itself-->
+    <Style TargetType="{x:Type DatePicker}">
+        <Setter Property="Foreground" Value="#FF333333" />
+        <Setter Property="IsTodayHighlighted" Value="True" />
+        <Setter Property="SelectedDateFormat" Value="Short" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <!--Set CalendarStyle to DatePickerCalendarStyle.-->
+        <Setter Property="CalendarStyle" Value="{DynamicResource DatePickerCalendarStyle}" />
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
+                    
+                    <!--Border around Datepicker-->
+                    <Border BorderThickness="1" Padding="{TemplateBinding Padding}">
+                        <Border.BorderBrush>
+                            <SolidColorBrush x:Name="DatePickerBorder" Color="#FFC2CAD8" /> 
+                        </Border.BorderBrush>
+                        <Border.Background>
+                            <SolidColorBrush x:Name="DatePickerBorderBackground" Color="White" />
+                        </Border.Background>
+                        
+                        <!--Popup animation -->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1"
+                                           Storyboard.TargetProperty="Opacity"
+                                           Storyboard.TargetName="PART_DisabledVisual" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <!--/ Popup animation -->
+
+                        <Grid x:Name="PART_Root" 
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Height="30">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="30" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--Textbox for date-->
+                            <DatePickerTextBox x:Name="PART_TextBox" 
+                               Grid.Column="0"
+                               Foreground="{TemplateBinding Foreground}"
+                               Focusable="{TemplateBinding Focusable}"
+                               HorizontalContentAlignment="Stretch"
+                               Grid.Row="0" 
+                               VerticalContentAlignment="Stretch" VerticalAlignment="Center" />                            
+                            
+                            
+                            <!--Button, that opens popup-->
+                            <Button x:Name="PART_Button"
+                                    Grid.Column="1" Margin="0" Padding="0"
+                                    Grid.Row="0"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    Focusable="False" 
+                                    Style="{StaticResource DropDownButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+                            
+                            <Grid x:Name="PART_DisabledVisual" 
+                                  Grid.ColumnSpan="2"
+                                  Grid.Column="0"
+                                  IsHitTestVisible="False"
+                                  Opacity="0"
+                                  Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.Column="0"
+                                     Fill="#A5FFFFFF"
+                                     RadiusY="1"
+                                     Grid.Row="0"
+                                     RadiusX="1" />
+                                <Rectangle Grid.Column="1"
+                                     Fill="#A5FFFFFF"
+                                     Height="18"
+                                     Margin="3,0,3,0"
+                                     RadiusY="1"
+                                     Grid.Row="0"
+                                     RadiusX="1"
+                                     Width="19" />
+                                <Popup x:Name="PART_Popup" 
+                                     AllowsTransparency="True"
+                                     Placement="Bottom"
+                                     PlacementTarget="{Binding ElementName=PART_TextBox}"
+                                     StaysOpen="False" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <!--/Border around Datepicker-->
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--The template for datepicker itself-->
+
+
+
+</ResourceDictionary>

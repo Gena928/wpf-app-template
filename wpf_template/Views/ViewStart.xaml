@@ -10,20 +10,33 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="649*"/>
+            <ColumnDefinition Width="187.826"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="166*"/>
-        </Grid.RowDefinitions>
 
-        <Label Style="{StaticResource Label_SmallWhite}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Example of excel automation</Label>
+
+
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="0,0,2.826,0.383">
+            <Label Style="{StaticResource Label_SmallWhite}" HorizontalAlignment="Center" VerticalAlignment="Center">Example of excel automation</Label>
+            <Button Style="{StaticResource Button_Hyperlink}" Command="{Binding icommand_create_excel_file}" ToolTip="Start excel and create calendar for current year">Create calendar in excel</Button>
+            <TextBlock></TextBlock>
+
+            <Label Style="{StaticResource Label_SmallWhite}" HorizontalAlignment="Center" VerticalAlignment="Center">Buttons</Label>
+            <TextBlock></TextBlock>
+            <Button Style="{StaticResource Button_Default}" FontFamily="{StaticResource FontAwesome}" >&#xf187;  Default button</Button>
+            <Button Style="{StaticResource Button_Primary}" FontFamily="{StaticResource FontAwesome}">&#xf217;  Primary button</Button>
+            <Button Style="{StaticResource Button_Success}" FontFamily="{StaticResource FontAwesome}">&#xf092;  Success button</Button>
+            <Button Style="{StaticResource Button_Hyperlink}" FontFamily="{StaticResource FontAwesome}" >&#xf003; Link Button</Button>
+            <Button Style="{StaticResource Button_Info}" FontFamily="{StaticResource FontAwesome}">&#xf0e7; Button info</Button>
+            <Button Style="{StaticResource Button_Warning}" FontFamily="{StaticResource FontAwesome}">&#xf0c3;  Button warning</Button>
+            <Button Style="{StaticResource Button_Danger}" FontFamily="{StaticResource FontAwesome}" >&#xf0a6; Button Danger</Button>
+
+            <TextBlock></TextBlock>
+            <DatePicker Width="120" HorizontalAlignment="Left"></DatePicker>
+        </StackPanel>
 
         
-        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
-            <Button Style="{StaticResource HyperlinkLikeButton}" Command="{Binding icommand_create_excel_file}" ToolTip="Start excel and create calendar for current year" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center">Create calendar in excel</Button>
-        </StackPanel>
         
     </Grid>
 </Page>
