@@ -9,8 +9,4 @@ Created in Visual Studio 2015, using .NET framework 4.5. Requires SQL server (Ex
 
 ![Image2](http://i65.tinypic.com/i76ddc.jpg)
 
-To be added in a few days:
-- roles support;
-- excel automation;
-
-See "Wiki" for more description.
+See "Wiki" for installation manual
