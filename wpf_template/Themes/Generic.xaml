@@ -7,36 +7,41 @@
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="Padding" Value="0,0,0,0" />
-        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontSize" Value="12"/>
+        <!--<Setter Property="Foreground" Value="#FF333333" />-->
     </Style>
 
-    <Style TargetType="Label">
+    <!--<Style TargetType="Label">
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontSize" Value="12"/>
         <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="Padding" Value="0,0,0,0" />
-    </Style>
+        --><!--<Setter Property="Foreground" Value="#FF333333" />--><!--
+    </Style>-->
 
     <Style TargetType="CheckBox">
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontSize" Value="12"/>
         <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="Padding" Value="0,0,0,0" />
+        <!--<Setter Property="Foreground" Value="#FF333333" />-->
     </Style>
 
     <Style TargetType="RadioButton">
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontSize" Value="12"/>
+        <!--<Setter Property="Foreground" Value="#FF333333" />-->
     </Style>
 
     <Style TargetType="GroupBox">
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontSize" Value="12"/>
+        <!--<Setter Property="Foreground" Value="#FF333333" />-->
     </Style>
 
     <Style TargetType="Hyperlink">
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="12"/>
     </Style>
     <!--/ General settings for all controls-->
 
@@ -65,7 +70,7 @@
     <Style x:Key="LeftMenuSmallButtons" 
                TargetType="{x:Type TextBlock}">
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontSize" Value="12"/>
         <Setter Property="Padding" Value="30,5,10,5"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="Gray"/>
@@ -80,16 +85,31 @@
     <!--/Main menu, small buttons-->
 
 
+    <!--TextBlock, big size (page header)-->
+    <Style x:Key="TextBlock_H1" 
+               TargetType="{x:Type TextBlock}" 
+               BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Padding" Value="0,0,0,0" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+    </Style>
+    <!--TextBlock, big size (page header)-->
 
+    
+    
     <!--Label, big size (page header)-->
     <Style x:Key="Label_BigSize" 
-               TargetType="Label" 
+               TargetType="{x:Type Label}" 
                BasedOn="{StaticResource {x:Type Label}}">
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontSize" Value="22" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="Padding" Value="0,0,0,0" />
+        <!--<Setter Property="OverridesDefaultStyle" Value="True" />-->
     </Style>
     <!--/Label, big size (page header)-->
 
@@ -99,7 +119,7 @@
                TargetType="Label" 
                BasedOn="{StaticResource {x:Type Label}}">
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="Padding" Value="0,0,0,0" />
@@ -107,4 +127,10 @@
     <!--/Label, small size white-->
 
 
+
+    <!--white colors for application-->
+    <Color x:Key="MyWhiteColor">#FFF4F2F1</Color>
+    <SolidColorBrush x:Key="MyWhiteColorBrush" Color="{DynamicResource MyWhiteColor}"></SolidColorBrush>
+    <Rectangle x:Key="MyWhiteColorRectangle" Fill="{StaticResource MyWhiteColorBrush}"/>
+    
 </ResourceDictionary>

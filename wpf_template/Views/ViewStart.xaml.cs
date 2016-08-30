@@ -18,7 +18,8 @@ namespace wpf_template.Views
                 _w.SetPageHeader("Welcome to my application");
 
             // DataContext
-            this.DataContext = new wpf_template.ViewModels.ViewStart_ViewModel();
+            this.DataContext = new wpf_template.ViewModels.ViewStart_ViewModel(_w);
         }
+
     }
 }

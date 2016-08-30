@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
 
     <!--General style for all buttons-->
-    <Style TargetType="Button">
+    <!--if you put here TargetType="Button", datepicker will be affected (simply will not work)-->
+    <Style TargetType="Button" x:Key="Button_DefaultSettings">
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontSize" Value="11"/>
         <Setter Property="Height" Value="28"/>
@@ -16,9 +17,9 @@
 
 
     <!--Default button (White)-->
-    <Style x:Key="Button_Default"  TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+    <Style x:Key="Button_Default" TargetType="{x:Type Button}" BasedOn="{StaticResource Button_DefaultSettings}">
         <Setter Property="Foreground" Value="#FF333333"/>
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -41,6 +42,13 @@
 
 
                     <ControlTemplate.Triggers>
+
+                        <!--Disabled state...-->
+                        <Trigger Property="IsEnabled" Value="False" SourceName="ButtonBorder">
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <!--Disabled state...-->
+
                         <!--Change color on mouse enter-->
                         <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonBorder">
                             <Trigger.EnterActions>
@@ -63,6 +71,9 @@
                         </Trigger>
                         <!--Change color on mouse enter-->
 
+
+
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -70,7 +81,7 @@
     </Style>
 
     <!--Primary button (Dark Blue)-->
-    <Style x:Key="Button_Primary"  TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" >
+    <Style x:Key="Button_Primary"  TargetType="{x:Type Button}" BasedOn="{StaticResource Button_DefaultSettings}">
         <Setter Property="Foreground" Value="White"/>
 
         <Setter Property="Template">
@@ -78,12 +89,12 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Name="ButtonBorder" CornerRadius="0" BorderThickness="1" >
                         <Border.Background>
-                            <SolidColorBrush x:Name="ButtonBorderBGColor" Color="#286090" />
+                            <SolidColorBrush x:Name="ButtonBorderBGColor" Color="#337ab7" />
                         </Border.Background>
                         <Border.BorderBrush>
-                            <SolidColorBrush x:Name="ButtonBorderColor" Color="#122b40" />
+                            <SolidColorBrush x:Name="ButtonBorderColor" Color="#2e6da4" />
                         </Border.BorderBrush>
-                            <TextBlock FontFamily="{TemplateBinding FontFamily}" 
+                        <TextBlock FontFamily="{TemplateBinding FontFamily}" Foreground="White" 
                                    Text="{TemplateBinding Content}" 
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Center"
@@ -92,13 +103,20 @@
 
 
                     <ControlTemplate.Triggers>
+
+                        <!--Disabled state...-->
+                        <Trigger Property="IsEnabled" Value="False" SourceName="ButtonBorder">
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <!--Disabled state...-->
+
                         <!--Change color on mouse enter-->
                         <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonBorder">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="ButtonBorderBGColor" Storyboard.TargetProperty="Color" From="#286090" To="#FF1C3C5A" Duration="0:0:0.2" />
-                                        <ColorAnimation Storyboard.TargetName="ButtonBorderColor" Storyboard.TargetProperty="Color" From="#122b40" To="#204d74" Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetName="ButtonBorderBGColor" Storyboard.TargetProperty="Color" From="#337ab7" To="#FF1C3C5A" Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetName="ButtonBorderColor" Storyboard.TargetProperty="Color" From="#2e6da4" To="#204d74" Duration="0:0:0.2" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
@@ -106,14 +124,14 @@
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="ButtonBorderBGColor" Storyboard.TargetProperty="Color" From="#FF1C3C5A" To="#286090" Duration="0:0:0.2" />
-                                        <ColorAnimation Storyboard.TargetName="ButtonBorderColor" Storyboard.TargetProperty="Color" From="#204d74" To="#122b40" Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetName="ButtonBorderBGColor" Storyboard.TargetProperty="Color" From="#FF1C3C5A" To="#337ab7" Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetName="ButtonBorderColor" Storyboard.TargetProperty="Color" From="#204d74" To="#2e6da4" Duration="0:0:0.2" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
                         </Trigger>
                         <!--Change color on mouse enter-->
-                        
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -121,7 +139,7 @@
     </Style>
 
     <!--Success button-->
-    <Style x:Key="Button_Success"  TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" >
+    <Style x:Key="Button_Success"  TargetType="{x:Type Button}" BasedOn="{StaticResource Button_DefaultSettings}">
         <Setter Property="Foreground" Value="White"/>
 
         <Setter Property="Template">
@@ -134,7 +152,7 @@
                         <Border.BorderBrush>
                             <SolidColorBrush x:Name="ButtonBorderColor" Color="#2bb8c4" />
                         </Border.BorderBrush>
-                        <TextBlock FontFamily="{TemplateBinding FontFamily}" 
+                        <TextBlock FontFamily="{TemplateBinding FontFamily}" Foreground="White" 
                                    Text="{TemplateBinding Content}" 
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Center"
@@ -143,6 +161,13 @@
 
 
                     <ControlTemplate.Triggers>
+
+                        <!--Disabled state...-->
+                        <Trigger Property="IsEnabled" Value="False" SourceName="ButtonBorder">
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <!--Disabled state...-->
+
                         <!--Change color on mouse enter-->
                         <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonBorder">
                             <Trigger.EnterActions>
@@ -172,7 +197,7 @@
     </Style>
 
     <!--Info button-->
-    <Style x:Key="Button_Info"  TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" >
+    <Style x:Key="Button_Info"  TargetType="{x:Type Button}" BasedOn="{StaticResource Button_DefaultSettings}">
         <Setter Property="Foreground" Value="White"/>
 
         <Setter Property="Template">
@@ -185,7 +210,7 @@
                         <Border.BorderBrush>
                             <SolidColorBrush x:Name="ButtonBorderColor" Color="#508edb" />
                         </Border.BorderBrush>
-                        <TextBlock FontFamily="{TemplateBinding FontFamily}" 
+                        <TextBlock FontFamily="{TemplateBinding FontFamily}" Foreground="White" 
                                    Text="{TemplateBinding Content}" 
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Center"
@@ -194,6 +219,14 @@
 
 
                     <ControlTemplate.Triggers>
+
+                        <!--Disabled state...-->
+                        <Trigger Property="IsEnabled" Value="False" SourceName="ButtonBorder">
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <!--Disabled state...-->
+
+
                         <!--Change color on mouse enter-->
                         <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonBorder">
                             <Trigger.EnterActions>
@@ -223,7 +256,7 @@
     </Style>
 
     <!--Warning button-->
-    <Style x:Key="Button_Warning"  TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" >
+    <Style x:Key="Button_Warning"  TargetType="{x:Type Button}" BasedOn="{StaticResource Button_DefaultSettings}">
         <Setter Property="Foreground" Value="White"/>
 
         <Setter Property="Template">
@@ -236,7 +269,7 @@
                         <Border.BorderBrush>
                             <SolidColorBrush x:Name="ButtonBorderColor" Color="#dab10d" />
                         </Border.BorderBrush>
-                        <TextBlock FontFamily="{TemplateBinding FontFamily}" 
+                        <TextBlock FontFamily="{TemplateBinding FontFamily}" Foreground="White"
                                    Text="{TemplateBinding Content}" 
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Center"
@@ -245,6 +278,13 @@
 
 
                     <ControlTemplate.Triggers>
+
+                        <!--Disabled state...-->
+                        <Trigger Property="IsEnabled" Value="False" SourceName="ButtonBorder">
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <!--Disabled state...-->
+
                         <!--Change color on mouse enter-->
                         <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonBorder">
                             <Trigger.EnterActions>
@@ -273,9 +313,8 @@
         </Setter>
     </Style>
 
-
     <!--Danger button-->
-    <Style x:Key="Button_Danger"  TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}" >
+    <Style x:Key="Button_Danger"  TargetType="{x:Type Button}" BasedOn="{StaticResource Button_DefaultSettings}">
         <Setter Property="Foreground" Value="White"/>
 
         <Setter Property="Template">
@@ -288,7 +327,7 @@
                         <Border.BorderBrush>
                             <SolidColorBrush x:Name="ButtonBorderColor" Color="#ea5460" />
                         </Border.BorderBrush>
-                        <TextBlock FontFamily="{TemplateBinding FontFamily}" 
+                        <TextBlock FontFamily="{TemplateBinding FontFamily}" Foreground="White" 
                                    Text="{TemplateBinding Content}" 
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Center"
@@ -297,6 +336,14 @@
 
 
                     <ControlTemplate.Triggers>
+
+                        <!--Disabled state...-->
+                        <Trigger Property="IsEnabled" Value="False" SourceName="ButtonBorder">
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <!--Disabled state...-->
+
+
                         <!--Change color on mouse enter-->
                         <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonBorder">
                             <Trigger.EnterActions>
@@ -338,7 +385,7 @@
                     <TextBlock Margin="0,0,0,5"
                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
                                VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                        <Hyperlink Foreground="#23527c" TextDecorations="{x:Null}" FontFamily="{TemplateBinding FontFamily}" Command="{TemplateBinding Command}">
+                        <Hyperlink Foreground="#23527c" TextDecorations="{x:Null}" FontFamily="{TemplateBinding FontFamily}" Command="{TemplateBinding Command}" FontSize="13">
                             <Run Text="{TemplateBinding Content}" />
                         </Hyperlink>
                     </TextBlock>
@@ -353,7 +400,7 @@
                             <TextBlock Margin="0,0,0,5" Cursor="Hand" 
                                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
                                        VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                                <Hyperlink Foreground="#23527c" FontFamily="{TemplateBinding FontFamily}" Command="{TemplateBinding Command}">
+                                <Hyperlink Foreground="#23527c" FontFamily="{TemplateBinding FontFamily}" Command="{TemplateBinding Command}" FontSize="13">
                                     <Run Text="{TemplateBinding Content}" />
                                 </Hyperlink>
                             </TextBlock>

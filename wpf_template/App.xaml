@@ -4,10 +4,16 @@
              xmlns:local="clr-namespace:wpf_template"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
+
+
         <ResourceDictionary>
 
             <!--Adding font awesome support-->
             <FontFamily x:Key="FontAwesome">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
+            
+            <!--Roboto support-->
+            <!--After the # sign is the name of the style. You can get it, if you open the font in Windows Explorer (not in Visual Studio!)-->
+            <FontFamily x:Key="FontRoboto">/Fonts/Roboto.ttf#Roboto</FontFamily>
 
             <!--Themes for application-->
             <ResourceDictionary.MergedDictionaries>
@@ -15,6 +21,9 @@
                 <ResourceDictionary Source="Themes/ExpanderStyles.xaml" />
                 <ResourceDictionary Source="Themes/Button.xaml" />
                 <ResourceDictionary Source="Themes/Datepicker.xaml" />
+                <ResourceDictionary Source="Themes/TabControl.xaml" />
+                <ResourceDictionary Source="Themes/ListView.xaml" />
+                
                 
             </ResourceDictionary.MergedDictionaries>
 

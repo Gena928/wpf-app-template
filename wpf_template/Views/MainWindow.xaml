@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf_template"
         mc:Ignorable="d"
-        Title="Main window of your application" d:DesignHeight="1100" d:DesignWidth="1800" WindowState="Maximized" Background="Transparent">
+        Title="Main window of your application" 
+        d:DesignHeight="1100" d:DesignWidth="1800" WindowState="Maximized" Background="Transparent">
 
     <!--Here we set a background image for application - Background="{Binding return_MainWindowImageBrush}" -->
     <Grid Name="Grid_MainWindowContainer" Background="{Binding return_MainWindowImageBrush}">
@@ -30,11 +31,11 @@
 
             <!--Application Image-->
             <StackPanel Height="90">
-                <Image Source="/wpf_template;component/Images/app_logo.png" Width="130" Height="65" Margin="0,10,5,0" MouseDown="Image_MainLogo_MouseDown" ToolTip="Click to nagigate to main window">
+                <!--<Image Source="/wpf_template;component/Images/app_logo.png" Width="130" Height="65" Margin="0,10,5,0" MouseDown="Image_MainLogo_MouseDown" ToolTip="Click to nagigate to main window">
                     <Image.OpacityMask>
                         <SolidColorBrush Color="Black" Opacity="0.5"/>
                     </Image.OpacityMask>
-
+                    
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Style.Triggers>
@@ -44,7 +45,26 @@
                             </Style.Triggers>
                         </Style>
                     </Image.Style>
-                </Image>
+                </Image>-->
+
+
+                <TextBlock FontFamily="{StaticResource FontAwesome}" Text="&#xf015;" 
+                           MouseDown="Image_MainLogo_MouseDown" FontSize="60" Foreground="White"
+                           Margin="0,10,5,0" ToolTip="Click to nagigate to main window" HorizontalAlignment="Center">
+                    <TextBlock.OpacityMask>
+                        <SolidColorBrush Color="Black" Opacity="0.8" />
+                    </TextBlock.OpacityMask>
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Cursor" Value="Hand" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                
             </StackPanel>
             <!--/Application Image-->
 
@@ -190,7 +210,8 @@
 
         <!--Main page header. Used by sub-pages to set a header. See code after InitializeComponent(); of every child page-->
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="20,20,0,0">
-            <Label Name="Label_PageHeader" Style="{StaticResource Label_BigSize}">Main page</Label>
+            <!--<Label Name="Label_PageHeader" Style="{DynamicResource Label_BigSize}"  FontSize="40" Foreground="Red" >AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Label>-->
+            <TextBlock Name="TextBlock_PageHeader" Style="{StaticResource TextBlock_H1}">Page header</TextBlock>
         </StackPanel>
         <!--/ Main page header. Used by sub-pages to set a header. See code after InitializeComponent(); of every child page-->
 

@@ -139,7 +139,8 @@ namespace wpf_template.Views
         /// </summary>
         public void SetPageHeader(string _MainHeader)
         {
-            this.Label_PageHeader.Content = _MainHeader;
+            // this.Label_PageHeader.Content = _MainHeader;
+            this.TextBlock_PageHeader.Text = _MainHeader;
         }
 
 

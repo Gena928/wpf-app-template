@@ -75,6 +75,14 @@
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProgressWindow\ProgressDialog.xaml.cs">
+      <DependentUpon>ProgressDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProgressWindow\ProgressDialogCancellationExcpetion.cs" />
+    <Compile Include="Views\ProgressWindow\ProgressDialogContext.cs" />
+    <Compile Include="Views\ProgressWindow\ProgressDialogResult.cs" />
+    <Compile Include="Views\ProgressWindow\ProgressDialogSettings.cs" />
+    <Compile Include="Views\ProgressWindow\WindowSettings.cs" />
     <Compile Include="Views\ViewStart.xaml.cs">
       <DependentUpon>ViewStart.xaml</DependentUpon>
     </Compile>
@@ -94,11 +102,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\ListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AppSettings\aa_BackGroundImages.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProgressWindow\ProgressDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,6 +146,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Fonts\fontawesome-webfont.ttf" />
+    <Resource Include="Fonts\Roboto.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

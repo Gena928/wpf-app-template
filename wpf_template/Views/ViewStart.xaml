@@ -17,14 +17,14 @@
 
 
 
-        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="0,0,2.826,0.383">
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
             <Label Style="{StaticResource Label_SmallWhite}" HorizontalAlignment="Center" VerticalAlignment="Center">Example of excel automation</Label>
             <Button Style="{StaticResource Button_Hyperlink}" Command="{Binding icommand_create_excel_file}" ToolTip="Start excel and create calendar for current year">Create calendar in excel</Button>
             <TextBlock></TextBlock>
 
             <Label Style="{StaticResource Label_SmallWhite}" HorizontalAlignment="Center" VerticalAlignment="Center">Buttons</Label>
             <TextBlock></TextBlock>
-            <Button Style="{StaticResource Button_Default}" FontFamily="{StaticResource FontAwesome}" >&#xf187;  Default button</Button>
+            <Button Style="{StaticResource Button_Default}" Command="{Binding icommand_ShowProgressWindow}" FontFamily="{StaticResource FontAwesome}" >&#xf187;  Show progress</Button>
             <Button Style="{StaticResource Button_Primary}" FontFamily="{StaticResource FontAwesome}">&#xf217;  Primary button</Button>
             <Button Style="{StaticResource Button_Success}" FontFamily="{StaticResource FontAwesome}">&#xf092;  Success button</Button>
             <Button Style="{StaticResource Button_Hyperlink}" FontFamily="{StaticResource FontAwesome}" >&#xf003; Link Button</Button>
@@ -34,9 +34,74 @@
 
             <TextBlock></TextBlock>
             <DatePicker Width="120" HorizontalAlignment="Left"></DatePicker>
+
+
+            <TextBlock></TextBlock>
+            <Label Style="{StaticResource Label_SmallWhite}" HorizontalAlignment="Center" VerticalAlignment="Center">Disabled buttons</Label>
+            <TextBlock></TextBlock>
+            <Button Command="{Binding icommand_disableButton}" Style="{StaticResource Button_Hyperlink}" ToolTip="Start excel and create calendar for current year">Create calendar in excel</Button>
+            <Button Command="{Binding icommand_disableButton}" Style="{StaticResource Button_Default}" FontFamily="{StaticResource FontAwesome}" >&#xf187;  Default button</Button>
+            <Button Command="{Binding icommand_disableButton}" Style="{StaticResource Button_Primary}" FontFamily="{StaticResource FontAwesome}">&#xf217;  Primary button</Button>
+            <Button Command="{Binding icommand_disableButton}" Style="{StaticResource Button_Success}" FontFamily="{StaticResource FontAwesome}">&#xf092;  Success button</Button>
+            <Button Command="{Binding icommand_disableButton}" Style="{StaticResource Button_Hyperlink}" FontFamily="{StaticResource FontAwesome}" >&#xf003; Link Button</Button>
+            <Button Command="{Binding icommand_disableButton}" Style="{StaticResource Button_Info}" FontFamily="{StaticResource FontAwesome}">&#xf0e7; Button info</Button>
+            <Button Command="{Binding icommand_disableButton}" Style="{StaticResource Button_Warning}" FontFamily="{StaticResource FontAwesome}">&#xf0c3;  Button warning</Button>
+            <Button Command="{Binding icommand_disableButton}" Style="{StaticResource Button_Danger}" FontFamily="{StaticResource FontAwesome}" >&#xf0a6; Button Danger</Button>
+
         </StackPanel>
 
-        
-        
+
+
+        <Grid Grid.Row="0" Grid.Column="1" >
+
+            <DockPanel Height="{Binding RelativeSource={RelativeSource FindAncestor,
+                           AncestorType={x:Type Grid}},
+                           Path=RowDefinitions[0].ActualHeight}">
+                <TabControl x:Name="TabControl_Main" Margin="5" >
+                    <TabItem Header="First item">
+                        <TabItem.Content>
+                            <StackPanel>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center">Buttons</Label>
+                                <TextBlock></TextBlock>
+                                <Button Style="{StaticResource Button_Default}" FontFamily="{StaticResource FontAwesome}" >&#xf187;  Default button</Button>
+                                <Button Style="{StaticResource Button_Primary}" FontFamily="{StaticResource FontAwesome}">&#xf217;  Primary button</Button>
+                                <Button Style="{StaticResource Button_Success}" FontFamily="{StaticResource FontAwesome}">&#xf092;  Success button</Button>
+                                <Button Style="{StaticResource Button_Hyperlink}" FontFamily="{StaticResource FontAwesome}" >&#xf003; Link Button</Button>
+                                <Button Style="{StaticResource Button_Info}" FontFamily="{StaticResource FontAwesome}">&#xf0e7; Button info</Button>
+                                <Button Style="{StaticResource Button_Warning}" FontFamily="{StaticResource FontAwesome}">&#xf0c3;  Button warning</Button>
+                                <Button Style="{StaticResource Button_Danger}" FontFamily="{StaticResource FontAwesome}" >&#xf0a6; Button Danger</Button>
+
+                                <TextBlock></TextBlock>
+                                <DatePicker Width="120" HorizontalAlignment="Left"></DatePicker>
+                            </StackPanel>
+                        </TabItem.Content>
+
+                    </TabItem>
+
+                    <TabItem Header="Second item" >
+                        <Grid >
+                            <ListView ItemsSource="{Binding return_ListView_Source}" 
+                                  ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" 
+                                  HorizontalAlignment="Stretch" AlternationCount="2" ItemContainerStyle="{StaticResource ListView_ItemContainerStyle_Main}" >
+                                <ListView.View>
+                                    <GridView AllowsColumnReorder="False">
+                                        <GridViewColumn  DisplayMemberBinding="{Binding Year}" HeaderTemplate="{StaticResource ListView_GridView_HeaderTemplate}" Header="Year" Width="50" />
+                                        <GridViewColumn DisplayMemberBinding="{Binding Month}" HeaderTemplate="{StaticResource ListView_GridView_HeaderTemplate}" Header="Month" Width="50"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Day}" HeaderTemplate="{StaticResource ListView_GridView_HeaderTemplate}" Header="Day" Width="50" />
+                                        <GridViewColumn DisplayMemberBinding="{Binding DayOfWeek}" HeaderTemplate="{StaticResource ListView_GridView_HeaderTemplate}" Header="Weekday" Width="100" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="One more item" >
+                        <TextBlock Foreground="#FF333333">foreground check. BLAH BLAH BLAH</TextBlock>
+                    </TabItem>
+
+                </TabControl>
+            </DockPanel>
+        </Grid>
+
     </Grid>
 </Page>

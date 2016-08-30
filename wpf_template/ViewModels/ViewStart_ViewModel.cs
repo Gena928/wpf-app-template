@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Threading;
 using System.Windows.Input;
 using wpf_template.Code;
+using wpf_template.Views.ProgressWindow;
 
 namespace wpf_template.ViewModels
 {
@@ -12,20 +15,53 @@ namespace wpf_template.ViewModels
     {
 
         #region Variables & constructor
+        ObservableCollection<DateTime> _listViewSource;
+        System.Windows.Window _ParentWindow;                    // Need to put Progress Window in the center of a main window
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ViewStart_ViewModel()
+        public ViewStart_ViewModel(System.Windows.Window _w)
         {
             this.icommand_create_excel_file = new ClassICommand_CreateCalendarInExcel();
+            this.icommand_disableButton = new ClassICommand_DisableButtons();
+            this.icommand_ShowProgressWindow = new ClassICommand_ShowProgressWindow(this);
+            _listViewSource = new ObservableCollection<DateTime>();
+            _ParentWindow = _w;
+
+            // Test data for ListView
+            CreateSimpleListViewSource();
         }
         #endregion
 
 
         #region Properties
 
+        /// <summary>
+        /// Source for ListView (just simple data)
+        /// </summary>
+        public ObservableCollection<DateTime> return_ListView_Source
+        {
+            get {
+                return _listViewSource;
+            }
+            set {
+                _listViewSource = value;
+                NotifyPropertyChanged("return_ListView_Source");
+            }
+        }
+
+
+        /// <summary>
+        /// Returning main window
+        /// </summary>
+        public System.Windows.Window return_main_window
+        {
+            get { return _ParentWindow; }
+        }
+
         #endregion
+
 
         #region ICommands
 
@@ -37,10 +73,49 @@ namespace wpf_template.ViewModels
             get;
             private set;
         }
+
+
+        /// <summary>
+        /// Property to make buttons disabled
+        /// </summary>
+        public ClassICommand_DisableButtons icommand_disableButton
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Showing progress window
+        /// </summary>
+        public ClassICommand_ShowProgressWindow icommand_ShowProgressWindow
+        {
+            get;
+            private set;
+        }
+
+
         #endregion 
 
 
         #region Methods
+
+        /// <summary>
+        /// Fill collection with data samples
+        /// </summary>
+        public void CreateSimpleListViewSource()
+        {
+            _listViewSource = new ObservableCollection<DateTime>();
+
+            DateTime _StartDate = DateTime.Today;
+            _StartDate = _StartDate.AddMonths(-12);
+
+            while (_StartDate <= DateTime.Today)
+            {
+                _listViewSource.Add(_StartDate);
+                _StartDate = _StartDate.AddDays(1);
+            }
+
+        }
         #endregion
 
     }
@@ -237,6 +312,143 @@ namespace wpf_template.ViewModels
         {
 
             CreateExcelFile();
+        }
+        #endregion
+
+    }
+
+
+    /// <summary>
+    /// Icommand to make buttons disabled
+    /// </summary>
+    class ClassICommand_DisableButtons : ICommand
+    {
+
+        #region Varibales and constructor
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        public ClassICommand_DisableButtons()
+        {
+
+        }
+        #endregion
+
+        /// <summary>
+        /// Main method
+        /// </summary>
+        private void DoSomething()
+        {
+
+
+
+        }
+
+        #region Interface
+
+
+        public bool CanExecute(object parameter)
+        {
+            // throw new NotImplementedException();
+            return false;
+        }
+
+        /// <summary>
+        /// now we are wired back to WPF command system
+        /// </summary>
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+
+        public void Execute(object parameter)
+        {
+
+            DoSomething();
+        }
+        #endregion
+
+    }
+
+
+
+
+
+    /// <summary>
+    /// Progress window
+    /// </summary>
+    class ClassICommand_ShowProgressWindow : ICommand
+    {
+
+        #region Variables & constructor
+        ViewStart_ViewModel _ViewModel;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public ClassICommand_ShowProgressWindow(ViewStart_ViewModel _v)
+        {
+            _ViewModel = _v;
+        }
+        #endregion
+
+
+        /// <summary>
+        /// Main method
+        /// </summary>
+        private void DoSomething()
+        {
+            // Easy way to pass data to the async method
+            int millisecondsTimeout = 500;
+
+            ProgressDialogResult result = ProgressDialog.Execute(_ViewModel.return_main_window, "Loading data", () => {
+
+                // Put your code for execution here
+                for (int i = 1; i <= 20; i++)
+                {
+                    ProgressDialog.Current.ReportWithCancellationCheck(i * 5, "Executing step {0}/20...", i);
+                    Thread.Sleep(millisecondsTimeout);
+                }
+
+
+            }, new ProgressDialogSettings(true, true, false));
+
+
+
+            if (result.Cancelled)
+                System.Windows.Forms.MessageBox.Show("Progress dialog cancelled");
+            else if (result.OperationFailed)
+                System.Windows.Forms.MessageBox.Show("ProgressDialog failed.");
+            else
+                System.Windows.Forms.MessageBox.Show("ProgressDialog successfully executed.");
+
+        }
+
+        #region Interface
+
+        public bool CanExecute(object parameter)
+        {
+            // throw new NotImplementedException();
+            return true;
+        }
+
+        /// <summary>
+        /// now we are wired back to WPF command system
+        /// </summary>
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+
+        public void Execute(object parameter)
+        {
+
+            DoSomething();
         }
         #endregion
 
