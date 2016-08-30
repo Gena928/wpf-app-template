@@ -42,7 +42,7 @@
 
 
                         <!--Main content-->
-                        <!--very important to pur grid here. This makes the content of TabItem stretch to full size-->
+                        <!--very important to put grid here. This makes the content of TabItem stretch to full size-->
                         <Grid Grid.Row="1" Grid.Column="0" Background="{StaticResource MyWhiteColorBrush}">
                             <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="10" />
                         </Grid>
