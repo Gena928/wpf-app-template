@@ -7,6 +7,6 @@ Simple, yet powerfull WPF template. Can be used to create "Click once" office ap
 
 Created in Visual Studio 2015, using .NET framework 4.5. Requires SQL server (Express is ok).
 
-![Image2](http://i65.tinypic.com/i76ddc.jpg)
+![Image2](http://tinypic.com/m/jh31pg/3)
 
 See "Wiki" for installation manual
